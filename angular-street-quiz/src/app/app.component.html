@@ -1,5 +1,5 @@
 <div class="container-fluid mr-0">
-  <img src="assets/newmarket.png" class="img logo" />
+  <img src="assets/newmarket.png" class="img logo" *ngIf="!selectedMap" />
   <div class="row" [style.height]="'100%'">
     <div class="col-12 col-sm-4 col-lg-3 mt-2 mb-1 street-col">
       <div class="form-row align-items-center">
@@ -8,7 +8,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text"><i class="fa fa-fw fa-filter"></i></div>
             </div>
-            <input type="text" class="form-control" name="search" [disabled]="quizMode" [(ngModel)]="search" [ngModelOptions]="{debounce: 300}" placeholder="Filter Streets">
+            <input type="text" class="form-control" name="search" [disabled]="quizMode == true" [(ngModel)]="search" [ngModelOptions]="{debounce: 300}" placeholder="Filter Streets">
             <div class="input-group-append">
                 <div class="input-group-button" [hidden]="!search">
                   <button class="btn btn-link btn-xs" (click)="search=''"><i class="fa fa-fw fa-times-circle text-danger"></i></button>
@@ -19,14 +19,23 @@
       </div>
       <ul class="nav nav-tabs">
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': !quizMode}" (click)="quizMode=false" href="javascript:void(0)"><i class="fa fa-fw fa-map-marked-alt"></i> Streets</a>
+          <a class="nav-link" [ngClass]="{'active': quizMode == false}" (click)="quizMode=false" href="javascript:void(0)"><i class="fa fa-fw fa-map-marked-alt"></i> Streets</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [ngClass]="{'active': quizMode}" (click)="quizMode=true" href="javascript:void(0)"><i class="fa fa-fw fa-question-circle"></i> Quiz</a>
+          <a class="nav-link" [ngClass]="{'active': quizMode == -1}" (click)="quizMode=-1" href="javascript:void(0)"><i class="fa fa-fw fa-ambulance"></i> 911 Maps</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [ngClass]="{'active': quizMode == true}" (click)="quizMode=true" href="javascript:void(0)"><i class="fa fa-fw fa-question-circle"></i> Quiz</a>
         </li>
       </ul>
       <section #streetsContainer class="streets-container">
-        <ul class="list-group" [style.height.px]="streetsHeight">
+        <ul class="list-group" [style.height.px]="streetsHeight" *ngIf="quizMode == -1">
+          <li class="list-group-item" [ngClass]="{ 'active': map == selectedMap }" *ngFor="let map of filteredMaps" (click)="setMap(map)">
+            <i class="fa fa-fw fa-file-pdf"></i>
+            {{ map.name.replace("Maps/", "").replace(".pdf", "") }}
+          </li>
+        </ul>
+        <ul class="list-group" [style.height.px]="streetsHeight" *ngIf="quizMode == true || quizMode == false">
           <li class="list-group-item" [ngClass]="{ 'active': street == selectedStreet }" *ngFor="let street of filteredStreets" (click)="setStreet(street)">
             {{ street }}
           </li>
@@ -44,9 +53,13 @@
       <!-- this creates a google map on the page with the given lat/lng from -->
       <!-- the component as the initial center of the map: -->
       <section #mapContainer class="map-container" [style.height.px]="mapHeight">
-        <agm-map [style.height]="'100%'" [zoom]="zoom" [latitude]="lat" [longitude]="lng">
+        <agm-map [style.height]="'100%'" [zoom]="zoom" [latitude]="lat" [longitude]="lng" *ngIf="!selectedMap">
           <agm-marker *ngIf="selectedStreet" [latitude]="lat" [longitude]="lng"></agm-marker>
         </agm-map>
+        <section *ngIf="selectedMap">
+          <pdf-viewer [src]="selectedMap.url" [fit-to-page]="true" [render-text]="true" style="display: block;"></pdf-viewer>
+          <a [href]="selectedMap.url" target="_blank"><i class="fa fa-fw fa-external-link"></i>Open Map in new tab or Download <i class="fa fa-fw fa-file-pdf"></i></a>
+        </section>
       </section>
     </div>
   </div>

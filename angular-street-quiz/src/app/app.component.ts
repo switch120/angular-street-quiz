@@ -1,7 +1,8 @@
 import { Component, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../environments/environment';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AngularFireDatabase } from '@angular/fire/database';
 
 @Component({
   selector: 'app-root',
@@ -18,9 +19,12 @@ export class AppComponent {
   public lng: number;
   public zoom: number = 14;
   private zoom_touched:boolean = false;
+  
   public selectedStreet: string;
+  public selectedMap: any;
   
   public streets:any[] = [];
+  public mapData:any[] = [];
   public search:string;
   public quizStreet:string;
 
@@ -46,6 +50,14 @@ export class AppComponent {
     });
   }
 
+  public get filteredMaps():any[] {
+    if (!this.search) return this.mapData;
+
+    return this.mapData.filter(map => {
+      return map.name.replace(/^Maps\//,"").replace(/[^a-z0-9]/ig, "").toLowerCase().includes(this.search.toLowerCase());
+    });
+  }
+
   public get mapHeight():number {
     if (this.mapContainer.nativeElement.offsetParent.offsetTop < 20) return window.innerHeight;
     return window.innerHeight - this.mapContainer.nativeElement.offsetParent.offsetTop;
@@ -59,7 +71,8 @@ export class AppComponent {
   constructor(
     private http:HttpClient,
     private db:AngularFireDatabase,
-    public ref:ChangeDetectorRef
+    public ref:ChangeDetectorRef,
+    private afs:AngularFireStorage
   ) {    
     // subscribe to the streets collection
     this.db.list("/streets").valueChanges().subscribe( (data:any) => {
@@ -68,6 +81,10 @@ export class AppComponent {
       this.streets = data.sort();
       
       this.refreshMap();
+    });
+
+    http.get(environment.endpoint + "/mapdata").subscribe( (data:any[]) => {
+      this.mapData = data;
     });
   }
 
@@ -79,7 +96,25 @@ export class AppComponent {
     }
     
     this.selectedStreet = value;
+    this.selectedMap = null;
+
     this.refreshMap();
+  }
+
+  async setMap(map) {
+    // const setData = () => {
+    //   this.selectedMap = map;
+    //   this.selectedStreet = null; 
+    // }
+
+    if (!map.url) {
+      map.url = await this.afs.ref(map.name).getDownloadURL().toPromise();
+    }
+
+    console.log(map);
+
+    this.selectedMap = map;
+    this.selectedStreet = null; 
   }
 
   refreshMap()
@@ -119,5 +154,4 @@ export class AppComponent {
   {
     this.quizStreet = this.streets[Math.round(Math.random() * this.streets.length)];
   }
-
 }

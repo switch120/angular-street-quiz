@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "angular-street-quiz",
+  "private_key_id": "e9d224448135806cb75c3777564f18af709c060c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDJnlQg0e4WesW3\n6Gm9l7BPDycjqgEu773kq+L7vW62bW3lX1XEdwwVybY1YaFBysuI2X3KmPp+vcvU\nwcj1xGfTbDF8bcX76QGSvc7evw4gdKgZUbikJ8m7WMBdWFRCqr8iiwPnGAKDvMKp\nu57ECNdRfaw5mS9LVEesDqA/zJNMlRvYEkCQ3co2tVAUqZZBoMmJrovvTPo9aqUa\nhf6tMx6MrQGqpOun/9I0w63JPL/jXm88InMFdpfVUzvB34h4Iv1BH3bFrqMp6TAQ\ntXHEX7TzUSqGJwFCf+pV8tYwm06gYibS7y2vfkZwFtPkQS7me/uLvor3ycwGN42j\n/5XjPUpLAgMBAAECggEAC1jIx/a98oVC/rWqyyEaqr23PdpB1Mq993z2T6VP8h5j\nJ/HfRCj7BM2PCUlkUkKVL9olqohE2MCFFIU6HR108RYkDCpVZncCP/2aAzk3afuG\nwQizXocKuGt8mq7vlwzq/YkGADR+t7v2LKftfdTi4VLe+s2J4YXDFDDX3fSnzuXK\nfOSH13hwNvHqGAWF9jdKmrqNa5Y2jG35e7UzfugIpXZHbITzWelzoLmFUPZH4O46\nVAkGppBlfuHsMcAib0/WydDMTFhpsEUOK27CODuOlECVsQr8fGnlWyhZP+ggz0xA\np7BnQDyMDrSBOK/1JkhNYSNY1eJf8hbnaPJCJSqNeQKBgQDln0MJ7eFXfcTgQsHA\nV03mI85t8U/6L40hPcPMOEvlvmxNXqd54VlbopDO/yFGBN5e+Fs803guRwRhTBVa\nhDrEURdJbrdxkbmg1tkbsOfmx/4hLwEq7FRHCuy/c/RGHepbvIM4V0CRmxOY/tfL\nDfbW5FXAF24r+gajAeobjezMnQKBgQDgx4jCcpDvDUi+iHmvqpzd2ApyGuMxtKms\nX1ZGzxLjMO7bYzc5W1YBQl6Af/YTgDDCKZY1UknU4zwD614HZnsVN2mAnpGIHz+b\nxzQdglQA/TneT2V+dh4wTaidO2NzEVQZA4P6TDOBkXxgFeRwTKeX0U304Ba86Ys0\ncooNy77aBwKBgQDfF1nxtq197JKv9Av8TJZBp74y8QXsI/DxP+oQaw3KW7UrgnAi\nqT/BGPOqORRhy+8kxBUYxrh39cWapmoEtH3IKKUAUlJmQ9ffHX54OetFPD96jAmN\nY2kKUOHtrMHCseP1VvUCczsnfEyRE+AixyFwbQ2nANyoW1XBX+XM+Zn8vQKBgH6q\nknuY2emMH9kWyRPf3gP5kXFZi3vgJdk35EOEv0z9ryw8Dcupl56gCub4tO+qRk+z\n5axokaiA4LoIsXUUH/oFvtM3CCWgDlU3fTu/zJy+FhUbwsLvxvVLXeA0rkcSlcR+\nwamTtVanaGIxFAjgeXTJAtgiS03rgYFtpjQ+A2+TAoGAfgjSObmZ6rM8SzA6a5y/\nyxevKuZZjIMIX+5P9LEvf5Yv3VTksFiZRO+XfkGT5JwZbfxhxsOw6YVKFz4YssgA\n+1YDNlymKJRCZygxK5M/qtOqrz/zXJpWrlUrao+TSpVYWKxKF64QE6bnf1XplJea\nlf2cV7nmn2pMRcxQNRZpY3U=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-vtsqn@angular-street-quiz.iam.gserviceaccount.com",
+  "client_id": "100937626959520053942",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-vtsqn%40angular-street-quiz.iam.gserviceaccount.com"
+}

@@ -8,12 +8,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AgmCoreModule } from '@agm/core';
-
-import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
-import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 @NgModule({
   declarations: [
@@ -22,15 +23,16 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: environment.googlemaps.api_key
-    })
+    }),
+    PdfViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]
